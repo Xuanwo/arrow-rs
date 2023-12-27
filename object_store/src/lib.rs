@@ -49,6 +49,10 @@
     feature = "http",
     doc = "* [HTTP Storage](https://datatracker.ietf.org/doc/html/rfc2518): [`HttpBuilder`](http::HttpBuilder)"
 )]
+#![cfg_attr(
+    feature = "webhdfs",
+    doc = "* [WebHDFS](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html): [`WebhdfsBuilder`](webhdfs::WebhdfsBuilder)"
+)]
 //! * In Memory: [`InMemory`](memory::InMemory)
 //! * Local filesystem: [`LocalFileSystem`](local::LocalFileSystem)
 //!
@@ -240,6 +244,8 @@ pub mod memory;
 pub mod path;
 pub mod prefix;
 pub mod throttle;
+#[cfg(feature = "webhdfs")]
+pub mod webhdfs;
 
 #[cfg(any(feature = "gcp", feature = "aws", feature = "azure", feature = "http"))]
 mod client;

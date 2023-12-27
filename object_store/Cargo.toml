@@ -38,6 +38,7 @@ parking_lot = { version = "0.12" }
 percent-encoding = "2.1"
 snafu = "0.7"
 tracing = { version = "0.1" }
+tracing-subscriber = { version = "0.3" }
 url = "2.2"
 walkdir = "2"
 
@@ -56,6 +57,10 @@ aws-types = { version = "0.55", optional = true }
 aws-credential-types = { version = "0.55", optional = true }
 aws-config = { version = "0.55", optional = true }
 
+# OpenDAL powered support
+# opendal = { version = "0.31.0", default-features = false, optional = true }
+opendal = { package = "opendal", path = "../../incubator-opendal/core", default-features = false, optional = true }
+
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 tokio = { version = "1.25.0", features = ["sync", "macros", "rt", "time", "io-util", "fs"] }
 
@@ -71,6 +76,7 @@ azure = ["cloud"]
 gcp = ["cloud", "rustls-pemfile"]
 aws = ["cloud"]
 http = ["cloud"]
+webhdfs = ["opendal/services-webhdfs"]
 
 # Experimental support for AWS_PROFILE
 aws_profile = ["aws", "aws-config", "aws-types", "aws-credential-types"]
